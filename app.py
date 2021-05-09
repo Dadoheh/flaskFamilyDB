@@ -136,7 +136,8 @@ def showthree():
 #TODO
 #DRY - refactorize code btwn 73-133
 #ADD html type's pages
-
+#ADD  participance year 'rok uczestnictwa'
+#ADD sorting by participance
 
 
 
