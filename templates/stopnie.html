@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Wszystkie stopnie</title>
+{% endblock %}
+
+{% block body %}
+<h1>Wszystkie stopnie</h1>
+
+    <br>
+    <h2>Dodaj nową rodzinę</h2>
+    <form action="/stopnie" method="post"> <!-- route '/posts' -->
+        <br>
+        Imiona i nazwisko:
+        <input class="form-control" type="text" name="names" id="names" placeholder="Wpisz imiona" aria-label="Wpisz imiona">
+        <br>
+        Adres e-mail:
+        <input class="form-control" type="text" name="mail" id="mail" placeholder="Wpisz email" aria-label="Wpisz email">
+        <br>
+        Typ rekolekcji (1A, 1B, 2, 3):
+        <input class="form-control" type="text" name="type" id="type" placeholder="Wpisz Rodzaj" aria-label="Wpisz rodzaj">
+        <br>
+        <input class="btn btn-success" type="submit" value="Dodaj">
+        <br>
+    </form>
+   <br>
+
+    {% for rodzina in stopnie %}
+            <p><b>Imiona i nazwisko: {{ rodzina.names }} <br>
+            e-mail: {{ rodzina.mail }}  <br>
+            Stopień: {{ rodzina.type }}</b></p>
+
+            <a class="btn btn-primary" href="/stopnie/edit/{{rodzina.id}}">Edytuj</a>
+            <a class="btn btn-info" href="/stopnie/uponeb/{{rodzina.id}}">Przenieś do 1B</a>
+            <a class="btn btn-info" href="/stopnie/uptwo/{{rodzina.id}}">Przenieś do 2</a>
+            <a class="btn btn-info" href="/stopnie/upthree/{{rodzina.id}}">Przenieś do 3</a>
+            <br><br>
+    {% endfor %}
+
+{% endblock %}
