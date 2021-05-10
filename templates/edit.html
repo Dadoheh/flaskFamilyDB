@@ -12,11 +12,11 @@
     <hr>
     <h2>Edit:</h2>
     <form action="/stopnie/edit/{{stopnie.id}}" method="POST"> <!-- route '/posts' -->
-        Title: <input class="form-control" type="text" name="names" id="names" value="{{stopnie.names}}">
+        Imiona i nazwisko <input class="form-control" type="text" name="names" id="names" value="{{stopnie.names}}">
         <br>
-        Author: <input class="form-control" type="text" name="mail" id="mail" value="{{stopnie.mail}}">
+        e-mail <input class="form-control" type="text" name="mail" id="mail" value="{{stopnie.mail}}">
         <br>
-        Post: <input class="form-control" type="text" name="type" id="type" value="{{stopnie.type}}">
+        Stopień <input class="form-control" type="text" name="type" id="type" value="{{stopnie.type}}">
         <br>
         <input class="btn btn-primary" type="submit" value="Save">
     </form>

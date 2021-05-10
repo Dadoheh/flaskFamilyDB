@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-
+from sqlalchemy import insert
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///kom1A.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///komunikacja.db'
 dba = SQLAlchemy(app)
 
 class FamilyPost(dba.Model):
@@ -13,6 +13,7 @@ class FamilyPost(dba.Model):
     mail = dba.Column(dba.String(25), nullable=False)
     type = dba.Column(dba.String(2), nullable=False)
     date_posted = dba.Column(dba.DateTime, nullable=False, default=datetime.utcnow)
+    date_participance = dba.Column(dba.String(20), nullable=True)
     def __repr__(self):
         return 'Family:' + str(self.id)
 
@@ -26,7 +27,8 @@ def stopnie():
         post_names = request.form['names']
         post_mail = request.form['mail']
         post_type = request.form['type']
-        new_post = FamilyPost(names = post_names, mail = post_mail, type = post_type)
+        post_participance = request.form['date_participance']
+        new_post = FamilyPost(names = post_names, mail = post_mail, type = post_type, date_participance = post_participance)
         dba.session.add(new_post)
         dba.session.commit()
         return redirect('/stopnie')
@@ -136,9 +138,22 @@ def showthree():
 #TODO
 #DRY - refactorize code btwn 73-133
 #ADD html type's pages
+#ADD DATE
 
+"""
+#how do add a column in sqlalchemy
 
+from sqlalchemy import String, MetaData, create_engine
+from migrate.versioning.schema import Table, Column
 
+db_engine =  create_engine(app.config.get('SQLALCHEMY_DATABASE_URI'))
+db_meta = MetaData(bind=db_engine)
+
+table = Table('tabel_name' , db_meta)
+col = Column('new_column_name', String(20), default='foo')
+    col.create(table)
+
+"""
 
 
 if __name__ == '__main__':
