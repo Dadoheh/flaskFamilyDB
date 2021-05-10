@@ -138,6 +138,7 @@ def showthree():
 #TODO
 #DRY - refactorize code btwn 73-133
 #ADD html type's pages
+<<<<<<< HEAD
 #ADD DATE
 
 """
@@ -148,6 +149,10 @@ from migrate.versioning.schema import Table, Column
 
 db_engine =  create_engine(app.config.get('SQLALCHEMY_DATABASE_URI'))
 db_meta = MetaData(bind=db_engine)
+=======
+#ADD  participance year 'rok uczestnictwa'
+#ADD sorting by participance
+>>>>>>> 9d9c444c82e048bb76c7513198f44e8fbb6629d8
 
 table = Table('tabel_name' , db_meta)
 col = Column('new_column_name', String(20), default='foo')
