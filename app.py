@@ -37,7 +37,7 @@ def stopnie():
         all_posts = FamilyPost.query.all()
         return render_template('stopnie.html', stopnie=all_posts)
 
-
+##########################################################changing type (for everyone)###########################
 @app.route('/stopnie/uponeb/<int:id>')
 def uponeb(id):
     family = FamilyPost.query.get_or_404(id)
@@ -58,6 +58,7 @@ def upthree(id):
     family.type = '3'
     dba.session.commit()
     return redirect('/stopnie')
+##################################################################################################################
 
 
 @app.route('/stopnie/edit/<int:id>', methods=['GET', 'POST'])
@@ -82,11 +83,11 @@ def showonea():
         new_post = FamilyPost(names = post_names, mail = post_mail, type = post_type)
         dba.session.add(new_post)
         dba.session.commit()
-        return redirect('/stopnie')
+        return redirect('/showonea')
     else:
 
-        all_posts = FamilyPost.query.all()
-        return render_template('stopnie.html', stopnie=all_posts)
+        all_posts = FamilyPost.query.filter_by(type='1A').all()
+        return render_template('showonea.html', showonea=all_posts)
 
 @app.route('/showoneb', methods=['GET','POST'])
 def showoneb():
@@ -138,8 +139,7 @@ def showthree():
 #TODO
 #DRY - refactorize code btwn 73-133
 #ADD html type's pages
-<<<<<<< HEAD
-#ADD DATE
+
 
 """
 #how do add a column in sqlalchemy
@@ -152,7 +152,6 @@ db_meta = MetaData(bind=db_engine)
 =======
 #ADD  participance year 'rok uczestnictwa'
 #ADD sorting by participance
->>>>>>> 9d9c444c82e048bb76c7513198f44e8fbb6629d8
 
 table = Table('tabel_name' , db_meta)
 col = Column('new_column_name', String(20), default='foo')
@@ -160,6 +159,38 @@ col = Column('new_column_name', String(20), default='foo')
 
 """
 
+
+##########################################################changing type (for onea)###########################
+"""@app.route('/stopnie/uponeb/<int:id>')
+def uponeb(id):
+    family = FamilyPost.query.get_or_404(id)
+    family.type = '1B'
+    dba.session.commit()
+    return redirect('/stopnie')
+
+@app.route('/stopnie/uptwo/<int:id>')
+def uptwo(id):
+    family = FamilyPost.query.get_or_404(id)
+    family.type = '2'
+    dba.session.commit()
+    return redirect('/stopnie')
+
+@app.route('/stopnie/upthree/<int:id>')
+def upthree(id):
+    family = FamilyPost.query.get_or_404(id)
+    family.type = '3'
+    dba.session.commit()
+    return redirect('/stopnie')"""
+############################################################################################################
+##########################################################changing type (for one)###########################
+
+############################################################################################################
+##########################################################changing type (for one)###########################
+
+############################################################################################################
+##########################################################changing type (for one)###########################
+
+############################################################################################################
 
 if __name__ == '__main__':
     app.run(debug=True)
