@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Stopień 2</title>
+{% endblock %}
+
+{% block body %}
+<br>
+<h1>Stopień 3</h1>
+
+    <br>
+    <h2>Dodaj nową rodzinę</h2>
+    <form action="/showthree" method="post">
+        <br>
+        Imiona i nazwisko:
+        <input class="form-control" type="text" name="names" id="names" placeholder="Wpisz imiona" aria-label="Wpisz imiona">
+        <br>
+        Adres e-mail:
+        <input class="form-control" type="text" name="mail" id="mail" placeholder="Wpisz email" aria-label="Wpisz email">
+        <br>
+        Typ warsztatów (1A, 1B, 2, 3):
+        <input class="form-control" type="text" name="type" id="type" placeholder="Wpisz Rodzaj" aria-label="Wpisz rodzaj">
+        <br>
+        Data przeżytych warsztatów (dd-dd.mm.rrrr)(dd.mm-dd.mm.rrrr)
+        <input class="form-control" type="text" name="date_participance" id="date_participance" placeholder="Wpisz Datę" aria-label="Wpisz Datę">
+        <br>
+        <input class="btn btn-success" type="submit" value="Dodaj">
+        <br>
+    </form>
+   <br>
+
+    {% for rodzina in showthree %}
+            <p><b>Imiona i nazwisko: {{ rodzina.names }} <br>
+            e-mail: {{ rodzina.mail }}  <br>
+            Stopień: {{ rodzina.type }} <br>
+            Data: {{ rodzina.date_participance }} </b></p>
+            <a class="btn btn-primary" href="/showthree/edit/{{rodzina.id}}">Edytuj</a>
+            <a class="btn btn-info" href="/showthree/uponeb/{{rodzina.id}}">Przenieś do 1B</a>
+            <a class="btn btn-info" href="/showthree/uptwo/{{rodzina.id}}">Przenieś do 2</a>
+            <a class="btn btn-info" href="/showthree/upthree/{{rodzina.id}}">Przenieś do 3</a>
+            <br><br>
+    {% endfor %}
+<br><br>
+{% endblock %}
