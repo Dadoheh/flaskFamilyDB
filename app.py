@@ -59,21 +59,7 @@ def upthree(id):
     dba.session.commit()
     return redirect('/stopnie')
 ##################################################################################################################
-
-
-@app.route('/stopnie/edit/<int:id>', methods=['GET', 'POST'])
-def edit(id):
-    family = FamilyPost.query.get_or_404(id)
-    if request.method == 'POST':
-        family.names = request.form['names']
-        family.mail = request.form['mail']
-        family.type = request.form['type']
-        dba.session.commit()
-        return redirect('/stopnie')
-    else:
-        return render_template('edit.html', stopnie=family)
-
-
+##########################################################changing type (for onea)###########################
 @app.route('/showonea', methods=['GET','POST'])
 def showonea():
     if request.method == 'POST':
@@ -88,6 +74,53 @@ def showonea():
 
         all_posts = FamilyPost.query.filter_by(type='1A').all()
         return render_template('showonea.html', showonea=all_posts)
+
+@app.route('/showonea/uponeb/<int:id>')
+def uponebfroma(id):
+    family = FamilyPost.query.get_or_404(id)
+    family.type = '1B'
+    dba.session.commit()
+    return redirect('/showonea')
+
+@app.route('/showonea/uptwo/<int:id>')
+def uptwofroma(id):
+    family = FamilyPost.query.get_or_404(id)
+    family.type = '2'
+    dba.session.commit()
+    return redirect('/showonea')
+
+@app.route('/showonea/upthree/<int:id>')
+def upthreefroma(id):
+    family = FamilyPost.query.get_or_404(id)
+    family.type = '3'
+    dba.session.commit()
+    return redirect('/showonea')
+
+@app.route('/showonea/edit/<int:id>', methods=['GET', 'POST'])
+def editfroma(id):
+    family = FamilyPost.query.get_or_404(id)
+    if request.method == 'POST':
+        family.names = request.form['names']
+        family.mail = request.form['mail']
+        family.type = request.form['type']
+        dba.session.commit()
+        return redirect('/showonea')
+    else:
+        return render_template('editonea.html', stopnie=family)
+############################################################################################################
+
+@app.route('/stopnie/edit/<int:id>', methods=['GET', 'POST'])
+def edit(id):
+    family = FamilyPost.query.get_or_404(id)
+    if request.method == 'POST':
+        family.names = request.form['names']
+        family.mail = request.form['mail']
+        family.type = request.form['type']
+        dba.session.commit()
+        return redirect('/stopnie')
+    else:
+        return render_template('edit.html', stopnie=family)
+
 
 @app.route('/showoneb', methods=['GET','POST'])
 def showoneb():
@@ -160,28 +193,7 @@ col = Column('new_column_name', String(20), default='foo')
 """
 
 
-##########################################################changing type (for onea)###########################
-"""@app.route('/stopnie/uponeb/<int:id>')
-def uponeb(id):
-    family = FamilyPost.query.get_or_404(id)
-    family.type = '1B'
-    dba.session.commit()
-    return redirect('/stopnie')
 
-@app.route('/stopnie/uptwo/<int:id>')
-def uptwo(id):
-    family = FamilyPost.query.get_or_404(id)
-    family.type = '2'
-    dba.session.commit()
-    return redirect('/stopnie')
-
-@app.route('/stopnie/upthree/<int:id>')
-def upthree(id):
-    family = FamilyPost.query.get_or_404(id)
-    family.type = '3'
-    dba.session.commit()
-    return redirect('/stopnie')"""
-############################################################################################################
 ##########################################################changing type (for one)###########################
 
 ############################################################################################################
