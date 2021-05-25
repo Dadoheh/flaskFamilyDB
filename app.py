@@ -38,14 +38,8 @@ def stopnie():
         return render_template('stopnie.html', stopnie=all_posts)
 
 
-#it need to be refactorio bcause this is spaghettio!!!
-#  |        |
-#  |        |
-# \ /      \ /
-#  .        .
-#
 
-##########################################################changing type (for everyone)###########################
+#                                                       changing type (for everyone)
 @app.route('/stopnie/uponeb/<int:id>')
 def uponeb(id):
     family = FamilyPost.query.get_or_404(id)
@@ -79,8 +73,8 @@ def edit(id):
     else:
         return render_template('edit.html', stopnie=family)
 
-##################################################################################################################
-##########################################################changing type (for onea)################################
+
+#                                                   changing type (for onea)
 
 @app.route('/showonea', methods=['GET','POST'])
 def showonea():
@@ -131,8 +125,8 @@ def editfroma(id):
     else:
         return render_template('editonea.html', stopnie=family)
 
-#############################################################################################################
-##########################################################changing type (for oneb)###########################
+
+#                                               changing type (for oneb)###########################
 
 @app.route('/showoneb', methods=['GET','POST'])
 def showoneb():
@@ -183,8 +177,8 @@ def editfromb(id):
     else:
         return render_template('editoneb.html', stopnie=family)
 
-############################################################################################################
-##########################################################changing type (for two)###########################
+
+#                                                changing type (for two)###########################
 
 @app.route('/showtwo', methods=['GET','POST'])
 def showtwo():
@@ -234,8 +228,8 @@ def editfromtwo(id):
     else:
         return render_template('edtittwo.html', stopnie=family)
 
-############################################################################################################
-##########################################################changing type (for three)###########################
+
+#                                                   changing type (for three)
 
 @app.route('/showthree', methods=['GET','POST'])
 def showthree():
@@ -295,22 +289,5 @@ if __name__ == '__main__':
 #ADD html type's pages - finished
 
 
-"""
-#how do add a column in sqlalchemy
-
-from sqlalchemy import String, MetaData, create_engine
-from migrate.versioning.schema import Table, Column
-
-db_engine =  create_engine(app.config.get('SQLALCHEMY_DATABASE_URI'))
-db_meta = MetaData(bind=db_engine)
-=======
-#ADD  participance year 'rok uczestnictwa'
-#ADD sorting by participance
-
-table = Table('tabel_name' , db_meta)
-col = Column('new_column_name', String(20), default='foo')
-    col.create(table)
-
-"""
 
 
